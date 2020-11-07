@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  rabbit:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  microsservicoA:
+    image: daisyannie/microsservico-avancadev-a
+    ports:
+      - "9090:9090"
+
+  microsservicoB:
+    image: daisyannie/microsservico-avancadev-b
+    ports:
+      - "9091:9091"
+    restart: always
+
+  microsservicoC:
+    image: daisyannie/microsservico-avancadev-c
+    ports:
+      - "9092:9092"
